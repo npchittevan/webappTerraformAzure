@@ -14,3 +14,13 @@ variable "appvnet_name" {
 variable "address_space" {
   type = string
 }
+variable "network_security_group_rules" {
+  type = list(object({
+    priority               = number
+    destination_port_range = string
+  }))
+}
+variable "app_subnet_count" {
+  type = number
+  description = "value of total subnets to be created"
+}
