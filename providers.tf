@@ -9,7 +9,7 @@ terraform {
   cloud {
     organization = "npchitt"
     workspaces {
-      name = "AzureLabs"
+      name = "myworkspace"
     }
   }
 }
