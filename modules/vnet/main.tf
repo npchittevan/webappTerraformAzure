@@ -12,23 +12,23 @@ resource "azurerm_virtual_network" "appvnet" {
 }
 
 resource "azurerm_subnet" "appsubnet" {
-  count = var.app_subnet_count
+  count                = var.app_subnet_count
   name                 = "app-subnet-${count.index}"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.appvnet.name
-  address_prefixes     = [cidrsubnet( var.address_space, 8, count.index )]
+  address_prefixes     = [cidrsubnet(var.address_space, 8, count.index)]
 }
 
 resource "azurerm_public_ip" "public_ipaddress" {
-    count = var.app_subnet_count
+  count               = var.app_subnet_count
   name                = "app-public-ip-${count.index}"
   location            = var.location
   resource_group_name = var.resource_group_name
-  allocation_method   = "Static"     
+  allocation_method   = "Static"
 }
 
-resource "azurem_network_interface" "network_interface" {
-    count = var.app_subnet_count
+resource "azurerm_network_interface" "network_interface" {
+  count               = var.app_subnet_count
   name                = "app-nic-${count.index}"
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -38,7 +38,7 @@ resource "azurem_network_interface" "network_interface" {
     subnet_id                     = azurerm_subnet.appsubnet[count.index].id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.public_ipaddress[count.index].id
-  }  
+  }
 }
 resource "azurerm_network_security_group" "appnsg" {
   name                = "app-nsg"
@@ -46,7 +46,7 @@ resource "azurerm_network_security_group" "appnsg" {
   resource_group_name = var.resource_group_name
   dynamic "security_rule" {
     for_each = toset(var.network_security_group_rules)
-    content {   
+    content {
       name                       = "rule-${security_rule.value.priority}"
       priority                   = security_rule.value.priority
       direction                  = "Inbound"
@@ -58,10 +58,10 @@ resource "azurerm_network_security_group" "appnsg" {
       destination_address_prefix = "*"
     }
   }
-  
+
 }
 resource "azurerm_network_interface_security_group_association" "nsg_association" {
-    count = var.app_subnet_count
-  network_interface_id      = azurem_network_interface.network_interface[count.index].id
+  count                     = var.app_subnet_count
+  network_interface_id      = azurerm_network_interface.network_interface[count.index].id
   network_security_group_id = azurerm_network_security_group.aapnsg.id
 }
