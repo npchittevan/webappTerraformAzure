@@ -57,5 +57,5 @@ resource "azurerm_network_security_group" "appnsg" {
 resource "azurerm_network_interface_security_group_association" "nsg_association" {
   count                     = var.app_subnet_count
   network_interface_id      = azurerm_network_interface.network_interface[count.index].id
-  network_security_group_id = azurerm_network_security_group.aapnsg.id
+  network_security_group_id = azurerm_network_security_group.appnsg.id
 }
