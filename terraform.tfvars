@@ -1,7 +1,7 @@
 resource_group_name = "appgroup"
 location            = "Central India"
 appvnet_name        = "appvnet"
-address_space       = "10.0.0.1/16"
+address_space       = "10.0.0.0/16"
 app_subnet_count    = 2
 network_security_group_rules = [
   {
