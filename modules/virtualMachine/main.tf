@@ -5,8 +5,8 @@ resource "azurerm_linux_virtual_machine" "appvm" {
   resource_group_name = var.resource_group_name
   size                = "Standard_B1s"
   admin_username      = "adminuser"
-  admin_password = "admin@12345"
-  custom_data = data.local_file.cloudinit.content_base64
+  admin_password      = "admin@12345"
+  custom_data         = data.local_file.cloudinit.content_base64
 
 
   network_interface_ids = [
@@ -26,5 +26,5 @@ resource "azurerm_linux_virtual_machine" "appvm" {
   }
 }
 data "local_file" "cloudinit" {
-  filename = "./modules/virtualMachine/cloudinit"  
+  filename = "./modules/virtualMachine/cloudinit"
 }

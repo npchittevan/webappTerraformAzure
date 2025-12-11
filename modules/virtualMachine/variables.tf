@@ -9,11 +9,11 @@ variable "location" {
 }
 
 variable "app_vm_count" {
-  type = number
+  type        = number
   description = "value"
 }
 
 variable "virtual_network_interface_ids" {
-    type=list(string)
-    description = "This will hold the virtual network interfaces ids"
+  type        = list(string)
+  description = "This will hold the virtual network interfaces ids"
 }
