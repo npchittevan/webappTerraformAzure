@@ -17,11 +17,11 @@ module "vnet" {
 }
 
 module "machines" {
-  source = "./modules/virtualmachines"
+  source = "./modules/virtualMachine"
 
   resource_group_name = var.resource_group_name
   location            = var.location
-  app_subnet_count    = var.app_vm_count
+  app_vm_count    = var.app_vm_count
   virtual_network_interface_ids = module.virtual_network.virtual_network_interface_ids
   depends_on          = [module.vnet]  
 }
