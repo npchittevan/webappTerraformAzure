@@ -22,7 +22,7 @@ module "machines" {
   resource_group_name           = var.resource_group_name
   location                      = var.location
   app_vm_count                  = var.app_vm_count
-  virtual_network_interface_ids = module.virtual_network.virtual_network_interface_ids
+  virtual_network_interface_ids = module.vnet.virtual_network_interface_ids
   depends_on                    = [module.vnet]
 }
 
