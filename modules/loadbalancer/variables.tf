@@ -15,3 +15,7 @@ variable "network_interface_private_ip_address" {
   type        = list(string)
   description = "This is the private IP addresses of the network interfaces attached to the virtual machines"
 }
+variable "virtual_network_id" {
+  type = string
+  description = "This is the ID of the virtual network"
+}

@@ -31,6 +31,7 @@ module "loadbalancer" {
   app_subnet_count                     = var.app_subnet_count
   resource_group_name                  = var.resource_group_name
   location                             = var.location
+  virtual_network_id                   = module.vnet.virtual_network_id
   network_interface_private_ip_address = module.vnet.network_interface_private_ip_addresses
   depends_on                           = [module.resource_group]
 }
