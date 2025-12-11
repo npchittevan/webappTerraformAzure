@@ -24,3 +24,7 @@ variable "app_subnet_count" {
   type        = number
   description = "value of total subnets to be created"
 }
+variable "app_vm_count" {
+  type = number
+  description = "value"
+}

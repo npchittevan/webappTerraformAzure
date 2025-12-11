@@ -15,6 +15,17 @@ module "vnet" {
   network_security_group_rules = var.network_security_group_rules
   depends_on                   = [module.resource_group]
 }
+
+module "machines" {
+  source = "./modules/virtualmachines"
+
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  app_subnet_count    = var.app_vm_count
+  virtual_network_interface_ids = module.virtual_network.virtual_network_interface_ids
+  depends_on          = [module.vnet]  
+}
+
 module "loadbalancer" {
   source                               = "./modules/loadbalancer"
   app_subnet_count                     = var.app_subnet_count
