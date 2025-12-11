@@ -26,6 +26,7 @@ resource "azurerm_lb_backend_address_pool_address" "appvmaddress" {
   count                   = var.app_subnet_count
   name                    = "machine${count.index}"
   backend_address_pool_id = azurerm_lb_backend_address_pool.backend-pool.id
+  virtual_network_id      = var.virtual_network_id
   ip_address              = var.network_interface_private_ip_address[count.index]
 }
 
