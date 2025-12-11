@@ -6,6 +6,7 @@ resource "azurerm_linux_virtual_machine" "appvm" {
   size                = "Standard_B1s"
   admin_username      = "adminuser"
   admin_password      = "admin@12345"
+  disable_password_authentication = false
   custom_data         = data.local_file.cloudinit.content_base64
 
 
