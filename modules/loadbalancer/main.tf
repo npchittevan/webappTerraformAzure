@@ -33,7 +33,7 @@ resource "azurerm_lb_probe" "probeA" {
   loadbalancer_id = azurerm_lb.loadbalancer.id
   name            = "probeA"
   port            = 80
-  protocol        = "TCP"
+  protocol        = "Tcp"
 }
 
 resource "azurerm_lb_rule" "lb_rule" {
