@@ -13,13 +13,13 @@ module "vnet" {
   address_space                = var.address_space
   app_subnet_count             = var.app_subnet_count
   network_security_group_rules = var.network_security_group_rules
-  depends_on = [ module.resource_group ]
+  depends_on                   = [module.resource_group]
 }
 module "loadbalancer" {
-  source = "./modules/loadbalancer"
-  app_subnet_count    = var.app_subnet_count  
-  resource_group_name = var.resource_group_name
-  location            = var.location
+  source                               = "./modules/loadbalancer"
+  app_subnet_count                     = var.app_subnet_count
+  resource_group_name                  = var.resource_group_name
+  location                             = var.location
   network_interface_private_ip_address = module.vnet.network_interface_private_ip_addresses
-  depends_on = [ module.resource_group ]
+  depends_on                           = [module.resource_group]
 }

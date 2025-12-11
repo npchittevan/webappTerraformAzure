@@ -8,10 +8,10 @@ variable "location" {
   description = "Location of the resource group"
 }
 variable "app_subnet_count" {
-  type = string
+  type        = string
   description = "total subnet count"
 }
 variable "network_interface_private_ip_address" {
-  type=list(string) 
+  type        = list(string)
   description = "This is the private IP addresses of the network interfaces attached to the virtual machines"
 }
